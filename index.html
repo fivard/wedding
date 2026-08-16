@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дмитро &amp; Анна — Запрошення</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #EDEEE6;
+    --paper: #F7F6F0;
+    --ink: #262F1F;
+    --ink-soft: #4B5641;
+    --accent: #8A6E4B;
+    --accent-soft: #B5A488;
+    --line: #C9C2A9;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  .grain{
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .page{
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8vh 6vw 10vh;
+    text-align: center;
+  }
+
+  .eyebrow{
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 3.2rem;
+    opacity: 0;
+    animation: rise 1s ease forwards 0.15s;
+  }
+
+  .monogram{
+    width: 92px;
+    height: 92px;
+    margin-bottom: 2.4rem;
+    opacity: 0;
+    animation: rise 1.1s ease forwards 0.35s;
+  }
+
+  .monogram path, .monogram circle{
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 1;
+  }
+
+  .names{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    line-height: 1.05;
+    margin: 0;
+    font-size: clamp(2.6rem, 8vw, 5.6rem);
+    letter-spacing: 0.01em;
+  }
+
+  .names .first{
+    display: block;
+    opacity: 0;
+    animation: rise 1s ease forwards 0.55s;
+  }
+
+  .amp{
+    display: block;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+    font-size: 0.42em;
+    margin: 0.35em 0;
+    opacity: 0;
+    animation: rise 1s ease forwards 0.75s;
+  }
+
+  .names .second{
+    display: block;
+    opacity: 0;
+    animation: rise 1s ease forwards 0.95s;
+  }
+
+  .divider{
+    width: 1px;
+    height: 64px;
+    background: var(--line);
+    margin: 3.2rem 0;
+    transform-origin: top;
+    opacity: 0;
+    animation: grow 1s ease forwards 1.25s;
+  }
+
+  .intro{
+    max-width: 34ch;
+    font-size: 1.02rem;
+    line-height: 1.85;
+    color: var(--ink-soft);
+    margin: 0 0 4rem;
+    opacity: 0;
+    animation: rise 1s ease forwards 1.4s;
+  }
+
+  .cards{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.4rem;
+    justify-content: center;
+    width: 100%;
+    max-width: 760px;
+    opacity: 0;
+    animation: rise 1s ease forwards 1.6s;
+  }
+
+  .card{
+    flex: 1 1 280px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 2.6rem 2rem;
+    position: relative;
+  }
+
+  .card .label{
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1rem;
+  }
+
+  .card .big{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 2.6rem;
+    margin: 0 0 0.6rem;
+    color: var(--ink);
+  }
+
+  .card p.detail{
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .note{
+    margin-top: 3.2rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    color: var(--accent-soft);
+    font-style: italic;
+    opacity: 0;
+    animation: rise 1s ease forwards 1.85s;
+  }
+
+  .countdown{
+    margin-top: 3.6rem;
+    display: flex;
+    gap: 2.2rem;
+    opacity: 0;
+    animation: rise 1s ease forwards 2s;
+  }
+
+  .countdown .unit{
+    text-align: center;
+  }
+
+  .countdown .num{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.1rem;
+    color: var(--ink);
+    display: block;
+  }
+
+  .countdown .u-label{
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  @keyframes rise{
+    from{ opacity: 0; transform: translateY(16px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes grow{
+    from{ opacity: 0; transform: scaleY(0); }
+    to{ opacity: 1; transform: scaleY(1); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .eyebrow, .monogram, .names .first, .amp, .names .second,
+    .divider, .intro, .cards, .note, .countdown{
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+
+  footer{
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem 0 3rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--accent-soft);
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<main class="page">
+  <p class="eyebrow">Ми одружуємось</p>
+
+  <svg class="monogram" viewBox="0 0 100 100" aria-hidden="true">
+    <circle cx="50" cy="50" r="46"/>
+    <path d="M32 65 V35 L50 55 L68 35 V65" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+
+  <h1 class="names">
+    <span class="first">Дмитро Бернада</span>
+    <span class="amp">&amp;</span>
+    <span class="second">Анна Бабіч</span>
+  </h1>
+
+  <div class="divider"></div>
+
+  <p class="intro">
+    Із теплом на серці запрошуємо вас розділити з нами цей особливий час.
+  </p>
+
+  <div class="cards">
+    <div class="card">
+      <p class="label">Розпис</p>
+      <p class="big">01.10.2026</p>
+      <p class="detail">Офіційна церемонія</p>
+    </div>
+    <div class="card">
+      <p class="label">Святкування</p>
+      <p class="big">30.09 — 03.10</p>
+      <p class="detail">Будиночок під Варшавою<br>Деталі скоро з'являться тут</p>
+    </div>
+  </div>
+
+  <div class="countdown" id="countdown">
+    <div class="unit"><span class="num" id="cd-days">–</span><span class="u-label">днів</span></div>
+    <div class="unit"><span class="num" id="cd-hours">–</span><span class="u-label">годин</span></div>
+    <div class="unit"><span class="num" id="cd-mins">–</span><span class="u-label">хвилин</span></div>
+  </div>
+
+  <p class="note">До зустрічі під Варшавою</p>
+</main>
+
+<footer>Дмитро &amp; Анна · 2026</footer>
+
+<script>
+  const target = new Date('2026-10-01T12:00:00');
+  function tick(){
+    const now = new Date();
+    let diff = target - now;
+    if(diff < 0) diff = 0;
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    document.getElementById('cd-days').textContent = d;
+    document.getElementById('cd-hours').textContent = h;
+    document.getElementById('cd-mins').textContent = m;
+  }
+  tick();
+  setInterval(tick, 30000);
+</script>
+
+</body>
+</html>
