@@ -1,307 +1,510 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Дмитрий &amp; Анна — Розпис 01.10.2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg: #F5EFDC;
-    --paper: #FFFBF0;
-    --ink: #21301D;
-    --ink-soft: #4E5A3F;
-    --gold: #D9A62E;
-    --rust: #C4432B;
-    --pine: #33502C;
-    --line: #C9B77E;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Дмитрий &amp; Анна — Розпис 01.10.2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #F6F0DE;
+      --ink: #1E2A19;
+      --ink-soft: #4B5640;
+      --gold: #D9A62E;
+      --rust: #C4432B;
+      --pine: #33502C;
+      --cream: #FFFBF0;
+    }
 
-  *{ box-sizing: border-box; }
+    *{ box-sizing: border-box; margin: 0; padding: 0; }
 
-  body{
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'Nunito', sans-serif;
-    overflow-x: hidden;
-    background-image:
-      radial-gradient(circle at 12% 18%, rgba(196,67,43,0.07), transparent 40%),
-      radial-gradient(circle at 88% 82%, rgba(51,80,44,0.09), transparent 45%);
-  }
+    body{
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Nunito', sans-serif;
+      overflow-x: hidden;
+    }
 
-  .page{
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 8vh 6vw 6vh;
-    text-align: center;
-    position: relative;
-  }
+    img{ display: block; max-width: 100%; }
 
-  .badge{
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 800;
-    font-size: 12px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--rust);
-    background: var(--paper);
-    border: 2px solid var(--rust);
-    padding: 0.5rem 1.1rem;
-    border-radius: 100px;
-    transform: rotate(-3deg);
-    margin-bottom: 2.6rem;
-    opacity: 0;
-    animation: pop 0.7s cubic-bezier(.2,1.4,.4,1) forwards 0.1s;
-  }
+    /* ---------- HERO ---------- */
 
-  .fire{
-    width: 16px;
-    height: 16px;
-    animation: flicker 1.6s ease-in-out infinite;
-  }
+    .hero{
+      position: relative;
+      min-height: 78vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background:
+              radial-gradient(ellipse 120% 70% at 50% 115%, rgba(217,166,46,0.22) 0%, rgba(217,166,46,0) 55%),
+              radial-gradient(ellipse 90% 60% at 50% -20%, rgba(75,105,66,0.55) 0%, rgba(75,105,66,0) 60%),
+              linear-gradient(180deg, #24371F 0%, #1C2B17 60%, #15200F 100%);
+    }
 
-  .names{
-    font-family: 'Fraunces', serif;
-    font-weight: 600;
-    line-height: 1;
-    margin: 0;
-    font-size: clamp(2.8rem, 10vw, 6.2rem);
-    opacity: 0;
-    animation: rise 0.9s ease forwards 0.3s;
-  }
+    .hero::before,
+    .hero::after{
+      content: "✦";
+      position: absolute;
+      color: rgba(217,166,46,0.4);
+      font-size: 14px;
+    }
 
-  .names .d{ color: var(--ink); display: inline-block; transform: rotate(-1.5deg); }
-  .names .a{ color: var(--ink); display: inline-block; transform: rotate(1deg); }
+    .hero::before{ top: 18%; left: 14%; }
+    .hero::after{ top: 26%; right: 16%; font-size: 10px; }
 
-  .amp{
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-weight: 500;
-    color: var(--gold);
-    font-size: clamp(1.2rem, 4vw, 2rem);
-    display: block;
-    margin: 0.3em 0;
-    opacity: 0;
-    animation: wiggle-in 0.9s ease forwards 0.55s;
-  }
+    .hero-content{
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 5rem 6vw;
+      color: var(--cream);
+      text-align: center;
+    }
 
-  .tagline{
-    max-width: 36ch;
-    font-size: 1.08rem;
-    line-height: 1.7;
-    color: var(--ink-soft);
-    margin: 1.8rem 0 3rem;
-    font-weight: 600;
-    opacity: 0;
-    animation: rise 0.9s ease forwards 0.85s;
-  }
+    .badge{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0;
+      animation: rise 0.9s ease forwards 0.2s;
+    }
 
-  .tagline b{ color: var(--rust); }
+    .names{
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      line-height: 0.98;
+      font-size: clamp(3rem, 11vw, 7.5rem);
+      margin: 0.5rem 0 0.6rem;
+      opacity: 0;
+      animation: rise 0.9s ease forwards 0.4s;
+    }
 
-  .divider-wrap{
-    width: 220px;
-    max-width: 60vw;
-    margin-bottom: 3rem;
-    opacity: 0;
-    animation: rise 0.9s ease forwards 1s;
-  }
+    .names em{
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold);
+      font-size: 0.55em;
+      display: inline-block;
+      margin: 0 0.15em;
+    }
 
-  .divider-wrap svg{ width: 100%; display: block; }
-  .divider-wrap path{
-    fill: none;
-    stroke: var(--gold);
-    stroke-width: 3;
-    stroke-linecap: round;
-  }
+    .hero-sub{
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      color: rgba(255,251,240,0.85);
+      opacity: 0;
+      animation: rise 0.9s ease forwards 0.6s;
+    }
 
-  .cards{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.6rem;
-    justify-content: center;
-    width: 100%;
-    max-width: 780px;
-  }
+    .hero-date{
+      display: inline-block;
+      margin-top: 0.9rem;
+      padding: 0.45rem 1.2rem;
+      border: 1.5px solid rgba(217,166,46,0.65);
+      border-radius: 999px;
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      opacity: 0;
+      animation: rise 0.9s ease forwards 0.75s;
+    }
 
-  .card{
-    flex: 1 1 300px;
-    background: var(--paper);
-    border: 2px solid var(--ink);
-    border-radius: 22px;
-    padding: 2.2rem 1.8rem 2rem;
-    position: relative;
-    box-shadow: 6px 6px 0 var(--gold);
-    opacity: 0;
-    animation: rise 0.9s ease forwards;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
+    .scroll-cue{
+      position: absolute;
+      bottom: 2.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      width: 22px;
+      height: 34px;
+      border: 2px solid rgba(255,251,240,0.7);
+      border-radius: 12px;
+      opacity: 0;
+      animation: rise 0.9s ease forwards 1s;
+    }
 
-  .card:hover{
-    transform: translate(-3px,-3px);
-    box-shadow: 9px 9px 0 var(--gold);
-  }
+    .scroll-cue::before{
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      width: 4px;
+      height: 8px;
+      background: var(--gold);
+      border-radius: 2px;
+      transform: translateX(-50%);
+      animation: dot 1.6s ease-in-out infinite;
+    }
 
-  .card:nth-of-type(1){ animation-delay: 1.15s; }
-  .card:nth-of-type(2){ animation-delay: 1.3s; box-shadow: 6px 6px 0 var(--rust); }
-  .card:nth-of-type(2):hover{ box-shadow: 9px 9px 0 var(--rust); }
+    /* ---------- INTRO ---------- */
 
-  .card .icon{ width: 40px; height: 40px; margin: 0 auto 0.8rem; }
-  .card .icon path, .card .icon circle, .card .icon line{
-    fill: none; stroke: var(--pine); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round;
-  }
+    .intro{
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 5.5rem 6vw 3rem;
+      text-align: center;
+    }
 
-  .card .label{
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin: 0 0 0.6rem;
-  }
+    .intro p{
+      font-size: 1.15rem;
+      line-height: 1.75;
+      color: var(--ink-soft);
+      font-weight: 600;
+    }
 
-  .card .big{
-    font-family: 'Fraunces', serif;
-    font-weight: 700;
-    font-size: 2.5rem;
-    margin: 0 0 0.5rem;
-    color: var(--ink);
-  }
+    .intro b{ color: var(--rust); }
 
-  .card p.detail{
-    font-size: 0.98rem;
-    color: var(--ink-soft);
-    line-height: 1.65;
-    margin: 0;
-    font-weight: 600;
-  }
+    .divider{
+      width: 46px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 3px;
+      margin: 2.2rem auto 0;
+    }
 
-  .countdown{
-    margin-top: 3rem;
-    display: flex;
-    gap: 1.8rem;
-    opacity: 0;
-    animation: rise 0.9s ease forwards 1.5s;
-  }
+    /* ---------- DATE CARDS ---------- */
 
-  .countdown .unit{
-    background: var(--pine);
-    color: var(--paper);
-    border-radius: 16px;
-    padding: 0.9rem 1.2rem;
-    min-width: 68px;
-    transform: rotate(-2deg);
-  }
-  .countdown .unit:nth-child(2){ transform: rotate(1.5deg); }
-  .countdown .unit:nth-child(3){ transform: rotate(-1deg); }
+    .dates{
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 1.5rem 6vw 5rem;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 1.4rem;
+      align-items: stretch;
+    }
 
-  .countdown .num{
-    font-family: 'Fraunces', serif;
-    font-size: 1.9rem;
-    font-weight: 700;
-    display: block;
-  }
-  .countdown .u-label{
-    font-size: 9px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    opacity: 0.75;
-  }
+    .date-card{
+      background: var(--cream);
+      border-radius: 20px;
+      padding: 2.4rem 2rem;
+      text-align: left;
+    }
 
-  .note{
-    margin-top: 2.6rem;
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--ink-soft);
-    opacity: 0;
-    animation: rise 0.9s ease forwards 1.7s;
-  }
+    .date-card.featured{
+      background: var(--pine);
+      color: var(--cream);
+      box-shadow: 0 18px 40px -18px rgba(51,80,44,0.55);
+    }
 
-  @keyframes rise{
-    from{ opacity: 0; transform: translateY(18px); }
-    to{ opacity: 1; transform: translateY(0); }
-  }
-  @keyframes pop{
-    0%{ opacity: 0; transform: rotate(-3deg) scale(0.7); }
-    100%{ opacity: 1; transform: rotate(-3deg) scale(1); }
-  }
-  @keyframes wiggle-in{
-    from{ opacity: 0; transform: rotate(-8deg) scale(0.6); }
-    to{ opacity: 1; transform: rotate(0deg) scale(1); }
-  }
-  @keyframes flicker{
-    0%, 100%{ transform: scale(1) rotate(0deg); }
-    50%{ transform: scale(1.15) rotate(-4deg); }
-  }
+    .date-card .label{
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 0.7rem;
+    }
 
-  @media (prefers-reduced-motion: reduce){
-    *{ animation: none !important; opacity: 1 !important; transform: none !important; }
-  }
+    .date-card.featured .label{ color: var(--gold); }
 
-  footer{
-    text-align: center;
-    padding: 1rem 0 3rem;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--ink-soft);
-  }
-</style>
+    .date-card .big{
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 2.2rem;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .date-card.featured .big{
+      color: var(--cream);
+      font-size: 2.6rem;
+    }
+
+    .date-card p.detail{
+      font-size: 0.98rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    .date-card.featured p.detail{ color: rgba(255,251,240,0.82); }
+
+    /* ---------- CHILDHOOD DIPTYCH (signature) ---------- */
+
+    .childhood{
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 1rem 6vw 5.5rem;
+      text-align: center;
+    }
+
+    .childhood h2{
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-style: italic;
+      font-size: clamp(1.6rem, 4.5vw, 2.3rem);
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+    }
+
+    .childhood .sub{
+      font-weight: 600;
+      color: var(--ink-soft);
+      font-size: 1.02rem;
+      max-width: 520px;
+      margin: 0 auto 2.6rem;
+      line-height: 1.65;
+    }
+
+    .diptych{
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .diptych figure{
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      aspect-ratio: 9 / 10;
+      background: var(--cream);
+    }
+
+    .diptych figure:first-child{ transform: rotate(-1.2deg); }
+    .diptych figure:last-child{ transform: rotate(1.2deg); }
+
+    .diptych img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .diptych figcaption{
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 2.2rem 1rem 0.9rem;
+      background: linear-gradient(180deg, rgba(14,18,10,0) 0%, rgba(14,18,10,0.75) 100%);
+      color: var(--cream);
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      text-align: center;
+    }
+
+    .diptych .amp{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--pine);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.9rem;
+      box-shadow: 0 10px 26px -8px rgba(30,42,25,0.5);
+    }
+
+    .childhood .punchline{
+      margin-top: 1.8rem;
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--pine);
+    }
+
+    /* ---------- COUPLE GALLERY ---------- */
+
+    .gallery{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: minmax(220px, 44vw);
+      gap: 6px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 6px;
+    }
+
+    .gallery figure{
+      position: relative;
+      overflow: hidden;
+      border-radius: 6px;
+    }
+
+    .gallery img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery figure:hover img{ transform: scale(1.05); }
+
+    .gallery figcaption{
+      position: absolute;
+      left: 0.9rem;
+      bottom: 0.8rem;
+      z-index: 2;
+      color: var(--cream);
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    /* ---------- COUNTDOWN / NOTE ---------- */
+
+    .closing{
+      text-align: center;
+      padding: 5rem 6vw 3rem;
+    }
+
+    .closing .cd-label{
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 1.4rem;
+    }
+
+    .countdown{
+      display: inline-flex;
+      gap: 2.4rem;
+      margin-bottom: 2.4rem;
+    }
+
+    .countdown .unit{ text-align: center; }
+
+    .countdown .num{
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 2.4rem;
+      color: var(--pine);
+      display: block;
+    }
+
+    .countdown .u-label{
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .note{
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--ink);
+    }
+
+    footer{
+      text-align: center;
+      padding: 2rem 0 3rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--ink-soft);
+    }
+
+    @keyframes rise{
+      from{ opacity: 0; transform: translateY(16px); }
+      to{ opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes dot{
+      0%{ opacity: 1; top: 6px; }
+      60%{ opacity: 0; top: 18px; }
+      61%{ opacity: 0; top: 6px; }
+      100%{ opacity: 1; top: 6px; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ animation: none !important; opacity: 1 !important; transform: none !important; }
+    }
+
+    @media (max-width: 760px){
+      .dates{ grid-template-columns: 1fr; }
+
+      .diptych{ gap: 10px; }
+      .diptych .amp{ width: 52px; height: 52px; font-size: 1.5rem; }
+      .diptych figcaption{ font-size: 0.9rem; }
+
+      .gallery{
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 64vw);
+      }
+    }
+  </style>
 </head>
 <body>
 
-<main class="page">
-  <span class="badge">
-    <svg class="fire" viewBox="0 0 24 24"><path d="M12 2c2 4-2 5-2 8a4 4 0 008 0c0-2-1-3-1-3s2 1 2 5a7 7 0 11-14 0c0-5 4-6 7-10z" fill="#C4432B" stroke="none"/></svg>
-    Ми розписуємось
-  </span>
+<header class="hero">
+  <div class="hero-content">
+    <p class="badge">Ми розписуємось</p>
+    <h1 class="names">Дмитрий <em>&amp;</em> Анна</h1>
+    <p class="hero-sub">Будиночок під Варшавою · знайомство родин</p>
+    <p class="hero-date">01 жовтня 2026</p>
+  </div>
+  <div class="scroll-cue"></div>
+</header>
 
-  <h1 class="names">
-    <span class="d">Дмитрий</span>
+<section class="intro">
+  <p>Головна подія — <b>розпис</b>: 1 жовтня ми офіційно стаємо родиною. А ще хочемо, щоб наші родини нарешті познайомилися й провели разом кілька теплих днів — <b>будиночок під Варшавою</b>, ліс і затишна компанія.</p>
+  <div class="divider"></div>
+</section>
+
+<section class="dates">
+  <div class="date-card featured">
+    <p class="label">Розпис</p>
+    <p class="big">01.10.2026</p>
+    <p class="detail">Тут ми стаємо офіційно родиною. Це — серце всієї зустрічі, і ми дуже хочемо розділити цей момент з вами</p>
+  </div>
+  <div class="date-card">
+    <p class="label">Знайомство родин</p>
+    <p class="big">30.09 — 03.10</p>
+    <p class="detail">Будиночок під Варшавою<br>Адресу й деталі скинемо трохи згодом 🙂</p>
+  </div>
+</section>
+
+<section class="childhood">
+  <h2>Ідеальна пара — з доказами</h2>
+  <p class="sub">Ще задовго до знайомства ми готувались до головного: сімейних посиденьок біля мангала. Судіть самі.</p>
+  <div class="diptych">
+    <figure>
+      <img src="childhood-him.jpg" alt="Дмитрий у дитинстві їсть шашлик у лісі">
+      <figcaption>він · тренування в лісі</figcaption>
+    </figure>
     <span class="amp">&amp;</span>
-    <span class="a">Анна</span>
-  </h1>
-
-  <p class="tagline">
-    Хочемо, щоб наші родини нарешті познайомилися й провели разом кілька теплих днів — багаття, ліс і <b>будиночок під Варшавою</b> на компанію.
-  </p>
-
-  <div class="divider-wrap">
-    <svg viewBox="0 0 220 24" preserveAspectRatio="none">
-      <path d="M2 12 C 30 2, 50 22, 80 12 S 130 2, 160 12 S 200 22, 218 10"/>
-    </svg>
+    <figure>
+      <img src="childhood-her.jpg" alt="Анна у дитинстві їсть шашлик зі шампура">
+      <figcaption>вона · професійний рівень</figcaption>
+    </figure>
   </div>
+  <p class="punchline">Апетит до життя — з дитинства. Мангал у будиночку вже чекає 🔥</p>
+</section>
 
-  <div class="cards">
-    <div class="card">
-      <svg class="icon" viewBox="0 0 40 40"><path d="M20 6c3 6-3 8-3 13a6 6 0 0012 0c0-3-1.5-4.5-1.5-4.5s3 1.5 3 7.5a10.5 10.5 0 01-21 0c0-7.5 6-9 10.5-16z"/></svg>
-      <p class="label">Розпис</p>
-      <p class="big">01.10.2026</p>
-      <p class="detail">Головна подія — офіційна церемонія</p>
-    </div>
-    <div class="card">
-      <svg class="icon" viewBox="0 0 40 40"><path d="M6 30 L20 12 L34 30 Z"/><line x1="14" y1="30" x2="14" y2="22"/><line x1="26" y1="30" x2="26" y2="22"/><line x1="8" y1="34" x2="32" y2="34"/></svg>
-      <p class="label">Знайомство родин</p>
-      <p class="big">30.09 — 03.10</p>
-      <p class="detail">Будиночок під Варшавою<br>Адресу й деталі скинемо трохи згодом 🙂</p>
-    </div>
-  </div>
-
+<section class="closing">
+  <p class="cd-label">До розпису лишилось</p>
   <div class="countdown">
     <div class="unit"><span class="num" id="cd-days">–</span><span class="u-label">днів</span></div>
     <div class="unit"><span class="num" id="cd-hours">–</span><span class="u-label">годин</span></div>
     <div class="unit"><span class="num" id="cd-mins">–</span><span class="u-label">хвилин</span></div>
   </div>
-
   <p class="note">До зустрічі — і нарешті знайомства! ✨</p>
-</main>
+</section>
 
 <footer>Дмитрий &amp; Анна · 2026</footer>
 
